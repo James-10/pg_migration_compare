@@ -27,7 +27,7 @@ def get_source_row_counts(conn: Connection) -> pd.DataFrame:
     src_table_list_df, src_schemas_list = get_db_tables(conn)
     for schema in src_schemas_list:
         src_tables_list = src_table_list_df.table_name.loc[
-            src_table_list_df.table_schema == schema        ].values.tolist()
+            src_table_list_df.table_schema == schema].values.tolist()
         for table in src_tables_list:
             src_row_query = f'select count(1) from "{schema}"."{table}";'            
             src_tables_row_count_queries_dict.update({table: src_row_query})
@@ -48,7 +48,7 @@ def get_target_row_counts(conn: Connection) -> pd.DataFrame:
     targ_table_list_df, targ_schemas_list = get_db_tables(conn)
     for schema in targ_schemas_list:
         targ_tables_list = targ_table_list_df.table_name.loc[
-            targ_table_list_df.table_schema == schema        ].values.tolist()
+            targ_table_list_df.table_schema == schema].values.tolist()
         for table in targ_tables_list:
             targ_row_query = f'select count(1) from "{schema}"."{table}";'            
             targ_tables_row_count_queries_dict.update({table: targ_row_query})
